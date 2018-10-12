@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title>Hill Track</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
@@ -12,27 +12,49 @@
 </head>
 
 <body>
-    <div id="app"></div>
+
+    <div id="app">
+    </div>
 
     <script type="text/babel">
-        class App extends React.Component {
 
-state = {
-    name: "Green Hill",
-    color: "Green"
-}
+    class App extends React.Component {
 
-            render() {
-                return (
-                    <div className="app-component">
-                        <h1>Hill Track</h1>
-                        <p>Name: { this.state.name } Color: { this.state.color }</p>
-                    </div>
-                )
-            }
+        state = {
+            name: "Green Hill",
+            color: "Green"
         }
 
-        ReactDOM.render(<App />, document.getElementById("app"));
+        handleClick = (e) => {
+            // console.log(e.target);
+            this.setState({
+                name: "Gray Hill"
+            });
+            console.log("Name: " + this.state.name + " Color: " + this.state.color);
+        }
+
+        handleHoverMouse = (e) => {
+            console.log(e.target, e.pageX);
+        }
+
+        handleCopy = (e) => {
+        console.log("Sorry, you can not copy!!!");
+        }
+
+        render(){
+            return(
+                <div className="header-content">
+                <h1>Hill Track</h1>
+                <p>The hill name is {this.state.name} and the color is {this.state.color}</p>
+                <p onCopy={this.handleCopy}>You can find more hills near by you</p>
+                <button onClick={this.handleClick}>Click Me</button>
+                <button onMouseOver={this.handleHoverMouse}>Hover Me</button>
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<App />, document.getElementById("app"));
     </script>
 </body>
 
